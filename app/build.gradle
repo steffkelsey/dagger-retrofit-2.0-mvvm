@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.thecodeviking.daggerretrofitmvvm"
+        minSdkVersion 19
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        lintConfig rootProject.file('gradle/lint.xml')
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // for testing locally with junit
+    testCompile 'junit:junit:4.12'
+    testCompile "org.robolectric:robolectric:3.0"
+    testCompile 'org.mockito:mockito-core:1.10.19'
+    testCompile 'org.json:json:20140107'
+    // for instrumentation (if we use things that require a device like location, ble, camera, etc)
+    androidTestCompile 'org.mockito:mockito-core:1.10.19'
+    androidTestCompile "com.google.dexmaker:dexmaker:1.2"
+    androidTestCompile "com.google.dexmaker:dexmaker-mockito:1.2"
+    // for tests and for the production code
+    apt "com.google.dagger:dagger-compiler:2.0.1"
+    provided 'javax.annotation:jsr250-api:1.0'
+    compile 'com.darwinsys:hirondelle-date4j:1.5.1'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'uk.co.chrisjenx:calligraphy:2.1.0'
+    compile 'com.google.dagger:dagger:2.0.1'
+    compile 'com.android.support:design:23.1.1'
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
+    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
+}
